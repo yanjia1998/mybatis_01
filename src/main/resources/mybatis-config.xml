@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--加载数据库连接信息的资源文件  放置此配置的最上方-->
+   <properties resource="db.properties"></properties>
+    <!-- 配置别名  是以首字母小写的类名-->
+    <typeAliases>
+        <!--typeAlias 配置单个实体类，type 全限定类名，alias 别名-->
+        <!-- <typeAlias type="com.qf.pojo.User" alias="user"></typeAlias>-->
+        <!-- name 你要给那个包下的实体生成别名，默认的别名是 头字母小写作为别名存在-->
+        <package name="com.qf.pojo"></package>
+    </typeAliases>
+
+    <!--当前选中的环境-->
+    <environments default="development">
+        <!-- 当前环境得数据库配置-->
+        <environment id="development">
+            <!-- 事务管理-->
+            <transactionManager type="JDBC"/>
+            <!-- 数据源配置-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- sql.xml存放的地址-->
+    <mappers>
+
+        <!--加载的是资源路径-->
+        <!-- <mapper resource="mapper/UserDao.xml"></mapper>-->
+        <mapper resource="mapper/UserMapper.xml"></mapper>
+
+<!--        <mapper resource="org/mybatis/example/BlogMapper.xml"/>-->
+    </mappers>
+</configuration>
