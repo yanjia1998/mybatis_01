@@ -19,4 +19,6 @@ public interface UserDao {
 
 
     int  updateUser(User user);
+
+    int insertUserGetId(User user);
 }

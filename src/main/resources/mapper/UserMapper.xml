@@ -44,6 +44,10 @@
             insert into user (u_id,u_name,u_pass,u_sex ,u_addr) values (#{id},#{name},#{pass},#{sex},#{addr});
         </insert>
 
+        <insert id="insertUserGetId" parameterType="user"  useGeneratedKeys="true" keyProperty="id">
+            insert into user (u_name,u_sex,u_addr) values (#{name},#{sex},#{addr});
+        </insert>
+
         <delete id="delUserById" parameterType="int">
             delete  from user where u_id = #{id};
         </delete>
@@ -52,6 +56,8 @@
 
             update user set u_name = #{name},u_pass = #{pass},u_sex = #{sex},u_addr = #{addr}  where u_id = #{id}
         </update>
+
+
 
 
 </mapper>

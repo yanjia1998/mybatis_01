@@ -90,6 +90,30 @@ public class TestUser {
 
 
     @Test
+    public void  testInsertUserGetId() throws IOException {
+        String resource = "mybatis-config.xml";
+        //读取mybatis的配置信息
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        //使用配置信息创建出sqlSession工程
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        //使用工厂来去打开一个连接
+        //加true就会自动提交    否则需要sqlSession.commit()手动提交
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
+        //使用sqlSession对象加载你要执行的接口
+        UserDao mapper = sqlSession.getMapper(UserDao.class);
+        //使用userDao调用你要执行的方法
+        User user = new User();
+        user.setName("ABC");
+        user.setAddr("西安市");
+        user.setSex("男");
+        int i = mapper.insertUserGetId(user);
+
+        System.out.println("受影响行数为..."+i+"这个用户的id为:"+user.getId());
+
+//        System.out.println(user);
+    }
+
+    @Test
     public void  testDelUser() throws IOException {
         String resource = "mybatis-config.xml";
         //读取mybatis的配置信息
